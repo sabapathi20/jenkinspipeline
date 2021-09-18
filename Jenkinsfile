@@ -2,10 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo 'Hello World'
+                echo 'This is build phase'
+            }
+        
+            }
+
+            post {
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
             }
         }
-    }
+    
 }
